@@ -1,6 +1,7 @@
 <div align="center">
 
-[![Phony Logo](https://raw.githubusercontent.com/phonyland/artwork/master/logo.png)](https://github.com/phonyland)
+![Phony Logo - Light](https://raw.githubusercontent.com/phonyland/artwork/master/logo-light.png#gh-light-mode-only)
+![Phony Logo - Dark](https://raw.githubusercontent.com/phonyland/artwork/master/logo-dark.png#gh-dark-mode-only)
 
 </div>
 
@@ -16,13 +17,13 @@ This repository contains the 🙃 Phony Framework.
 
 # 🙃
 
-Start generating data with 🙃 Phony Framework,  
-visit the main **[Phony Repository](https://github.com/phonyland/phony)**.
+Start generating fake data with 🙃 Phony Framework,  
+visit the main **[Phony Repository](https://github.com/phonyland/framework)**.
 
 Explore the docs: **[phony.land »](https://phony.land/)**  
 Follow us on Twitter: **[@phony_land »](https://twitter.com/phony_land)**
 
-**[🙃 Phony Data Generation Framework](https://phony.land)**  
+**[🙃 Phony<br/>Fake Data Generation Framework](https://phony.land)**  
 was created by  
 **[Yunus Emre Deligöz](https://twitter.com/yedeligoez)**  
 under  
