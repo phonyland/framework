@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Phonyland\Framework\Container;
+use Phonyland\Framework\Exceptions\ShouldNotHappen;
 
 beforeEach(function () {
     $this->container = new Container();
@@ -36,6 +37,10 @@ it('creates an instance and resolves also sub parameters', function () {
     expect($instance)->toBeInstanceOf(ClassWithSubDependency::class);
 });
 
+it('cannot resolve a parameter without type', function () {
+    $this->container->get(ClassWithoutTypeParameter::class);
+})->throws(ShouldNotHappen::class);
+
 class ClassWithDependency
 {
     public function __construct(Container $container)
@@ -46,6 +51,13 @@ class ClassWithDependency
 class ClassWithSubDependency
 {
     public function __construct(ClassWithDependency $param)
+    {
+    }
+}
+
+class ClassWithoutTypeParameter
+{
+    public function __construct($param)
     {
     }
 }
