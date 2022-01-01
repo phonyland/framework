@@ -10,8 +10,6 @@ use ReflectionNamedType;
 use ReflectionParameter;
 
 /**
- * @internal
- *
  * @see https://github.com/pestphp/pest/blob/master/src/Support/Container.php
  */
 final class Container
