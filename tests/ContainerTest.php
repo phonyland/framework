@@ -17,3 +17,7 @@ it('gets an instance', function () {
     // Act
     expect($this->container->get(Container::class))->toBe($this->container);
 });
+
+test('autowire', function () {
+    expect($this->container->get(Container::class))->toBeInstanceOf(Container::class);
+});
