@@ -1,8 +1,18 @@
 {
     "name": "phonyland/framework",
-    "description": "\ud83d\ude43 Phony Framework",
+    "description": "\ud83d\ude43 Phony. Real-like Fake Data Generation Framework",
     "license": "MIT",
     "type": "library",
+    "keywords": [
+        "php",
+        "framework",
+        "phony",
+        "random",
+        "faker",
+        "ngram",
+        "seeding",
+        "generator"
+    ],
     "authors": [
         {
             "name": "Yunus Emre Delig\u00f6z",
