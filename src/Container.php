@@ -28,11 +28,11 @@ final class Container
      */
     public static function getInstance(): self
     {
-        if (static::$instance == null) {
-            static::$instance = new static();
+        if (! isset(self::$instance)) {
+            self::$instance = new self();
         }
 
-        return static::$instance;
+        return self::$instance;
     }
 
     /**
