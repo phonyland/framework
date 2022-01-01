@@ -1,0 +1,61 @@
+{
+    "name": "phonyland/framework",
+    "description": "\ud83d\ude43 Phony Framework",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Yunus Emre Delig\u00f6z",
+            "email": "ye@deligoz.me"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "phonyland/generator-manager": "dev-master"
+    },
+    "require-dev": {
+        "phonyland/dev-tools": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Phonyland\\Framework\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phonyland\\Framework\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
+            "pestphp/pest-plugin": true,
+            "phonyland/generator-manager": true,
+            "phpstan/extension-installer": true,
+            "symfony/thanks": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@normalize",
+            "@validate",
+            "@thanks"
+        ],
+        "lint": "php-cs-fixer fix -v",
+        "normalize": "@composer normalize --ansi --no-interaction --quiet",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ],
+        "test:lint": "php-cs-fixer fix -v --dry-run",
+        "test:types": "phpstan analyse --ansi --memory-limit=-1",
+        "test:unit": "pest --colors=always",
+        "thanks": "@composer thanks --ansi --no-interaction --quiet",
+        "validate": "@composer validate --strict --ansi --no-interaction"
+    }
+}
