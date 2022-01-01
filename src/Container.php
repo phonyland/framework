@@ -28,7 +28,7 @@ final class Container
      */
     public static function getInstance(): self
     {
-        if (static::$instance === null) {
+        if (static::$instance == null) {
             static::$instance = new static();
         }
 
@@ -101,7 +101,6 @@ final class Container
      */
     private function build(string $id): object
     {
-        /** @phpstan-ignore-next-line */
         $reflectionClass = new ReflectionClass($id);
 
         if ($reflectionClass->isInstantiable()) {
