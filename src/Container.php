@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Phonyland\Framework;
 
 use Phonyland\Framework\Exceptions\ShouldNotHappen;
-use Reflection;
 use ReflectionClass;
+use ReflectionNamedType;
 use ReflectionParameter;
 
 /**
  * @internal
+ *
+ * @see https://github.com/pestphp/pest/blob/master/src/Support/Container.php
  */
 final class Container
 {
@@ -65,6 +67,34 @@ final class Container
     }
 
     /**
+     * Get the class name of the given parameter's type, if possible.
+     *
+     * @see https://github.com/laravel/framework/blob/v6.18.25/src/Illuminate/Support/Reflector.php
+     */
+    public static function getParameterClassName(ReflectionParameter $parameter): ?string
+    {
+        $type = $parameter->getType();
+
+        if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) {
+            return null;
+        }
+
+        $name = $type->getName();
+
+        if (($class = $parameter->getDeclaringClass()) instanceof ReflectionClass) {
+            if ($name === 'self') {
+                return $class->getName();
+            }
+
+            if ($name === 'parent' && ($parent = $class->getParentClass()) instanceof ReflectionClass) {
+                return $parent->getName();
+            }
+        }
+
+        return $name;
+    }
+
+    /**
      * Tries to build the given instance.
      *
      * @throws \ReflectionException
@@ -80,7 +110,7 @@ final class Container
             if ($constructor !== null) {
                 $params = array_map(
                     function (ReflectionParameter $param) use ($id) {
-                        $candidate = Reflection::getParameterClassName($param);
+                        $candidate = self::getParameterClassName($param);
 
                         if ($candidate === null) {
                             $type = $param->getType();

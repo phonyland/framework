@@ -21,3 +21,17 @@ it('gets an instance', function () {
 test('autowire', function () {
     expect($this->container->get(Container::class))->toBeInstanceOf(Container::class);
 });
+
+it('creates an instance and resolves parameters', function () {
+    $this->container->add(Container::class, $this->container);
+    $instance = $this->container->get(ClassWithDependency::class);
+
+    expect($instance)->toBeInstanceOf(ClassWithDependency::class);
+});
+
+class ClassWithDependency
+{
+    public function __construct(Container $container)
+    {
+    }
+}
