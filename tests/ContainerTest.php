@@ -29,9 +29,23 @@ it('creates an instance and resolves parameters', function () {
     expect($instance)->toBeInstanceOf(ClassWithDependency::class);
 });
 
+it('creates an instance and resolves also sub parameters', function () {
+    $this->container->add(Container::class, $this->container);
+    $instance = $this->container->get(ClassWithSubDependency::class);
+
+    expect($instance)->toBeInstanceOf(ClassWithSubDependency::class);
+});
+
 class ClassWithDependency
 {
     public function __construct(Container $container)
+    {
+    }
+}
+
+class ClassWithSubDependency
+{
+    public function __construct(ClassWithDependency $param)
     {
     }
 }

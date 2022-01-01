@@ -75,7 +75,7 @@ final class Container
     {
         $type = $parameter->getType();
 
-        if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) {
+        if (! $type instanceof ReflectionNamedType || $type->isBuiltin()) {
             return null;
         }
 
