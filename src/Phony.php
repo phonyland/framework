@@ -4,20 +4,32 @@ declare(strict_types=1);
 
 namespace Phonyland\Framework;
 
+use Phonyland\GeneratorManager\Container;
+
 class Phony
 {
+    private Container $container;
+
+    public function __construct()
+    {
+        $this->container = new Container();
+    }
+
+    /**
+     * @throws \Exception
+     */
     public function __get(string $name)
     {
-        // TODO: Implement __get() method.
+        return $this->container->get($name);
     }
 
     public function __set(string $name, $value): void
     {
-        // TODO: Implement __set() method.
+        throw new RuntimeException('Not allowed');
     }
 
     public function __isset(string $name): bool
     {
-        // TODO: Implement __isset() method.
+        return $this->container->has($name);
     }
 }
