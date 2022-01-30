@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phonyland\Framework;
 
 use Phonyland\GeneratorManager\Container;
+use RuntimeException;
 
 class Phony
 {
@@ -18,12 +19,12 @@ class Phony
     /**
      * @throws \Exception
      */
-    public function __get(string $name)
+    public function __get(string $name): mixed
     {
         return $this->container->get($name);
     }
 
-    public function __set(string $name, $value): void
+    public function __set(string $name, string $value): void
     {
         throw new RuntimeException('Not allowed');
     }
