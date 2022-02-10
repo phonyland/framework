@@ -14,7 +14,7 @@ class Phony
 
     public function __construct()
     {
-        $this->container = new Container();
+        $this->container = new Container($this);
     }
 
     /**
