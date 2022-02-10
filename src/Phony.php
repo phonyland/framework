@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phonyland\Framework;
 
 use Phonyland\GeneratorManager\Container;
+use Phonyland\GeneratorManager\Generator;
 use RuntimeException;
 
 class Phony
@@ -19,7 +20,7 @@ class Phony
     /**
      * @throws \Exception
      */
-    public function __get(string $name): mixed
+    public function __get(string $name): Generator
     {
         return $this->container->get($name);
     }
