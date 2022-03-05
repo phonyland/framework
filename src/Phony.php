@@ -11,9 +11,12 @@ class Phony
 {
     private Container $container;
 
-    public function __construct()
+    protected string $defaultLocale;
+
+    public function __construct(string $defaultLocale = Locale::English)
     {
         $this->container = new Container($this);
+        $this->defaultLocale = $defaultLocale;
     }
 
     /**
