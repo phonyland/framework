@@ -61,9 +61,11 @@
         "test": [
             "@test:lint",
             "@test:types",
-            "@test:unit"
+            "@test:unit",
+            "@test:mutations"
         ],
         "test:lint": "php-cs-fixer fix -v --dry-run",
+        "test:mutations": "infection --test-framework=pest --show-mutations",
         "test:types": "phpstan analyse --ansi --memory-limit=-1",
         "test:unit": "pest --colors=always",
         "thanks": "@composer thanks --ansi --no-interaction --quiet",
