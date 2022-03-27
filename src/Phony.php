@@ -7,6 +7,11 @@ namespace Phonyland\Framework;
 use Phonyland\GeneratorManager\Container;
 use RuntimeException;
 
+/**
+ * Class Phony.
+ *
+ * @property-read \Phonyland\NumberGenerator\NumberGenerator number
+ */
 class Phony
 {
     private Container $container;
@@ -29,7 +34,7 @@ class Phony
 
     public function __set(string $name, string $value): void
     {
-        throw new RuntimeException('Not allowed');
+        throw new RuntimeException('Not allowed to set any generators');
     }
 
     public function __isset(string $name): bool
