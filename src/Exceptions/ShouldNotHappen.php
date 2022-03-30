@@ -17,17 +17,15 @@ final class ShouldNotHappen extends RuntimeException
      */
     public function __construct(Exception $exception)
     {
-        $message = $exception->getMessage();
-
         parent::__construct(sprintf(<<<'MESSAGE'
                 
-                This should not happen - please create an new issue here: https://github.com/phonyland/framework.
+                This should not happen - please create a new issue here: https://github.com/phonyland/framework.
                 
                 - Issue: %s
                 - PHP version: %s
                 - Operating system: %s
                 MESSAGE
-            , $message, PHP_VERSION, PHP_OS), 1, $exception);
+            , $exception->getMessage(), PHP_VERSION, PHP_OS), 1, $exception);
     }
 
     /**
