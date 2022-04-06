@@ -14,7 +14,8 @@ abstract class Generator
     public array $dataPackages = [];
 
     public function __construct(
-        protected Phony $phony
+        public string $alias,
+        protected Phony $phony,
     ) {
     }
 }
