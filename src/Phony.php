@@ -10,18 +10,23 @@ use RuntimeException;
 /**
  * Class Phony.
  *
- * @property-read \Phonyland\NumberGenerator\NumberGenerator number
+ * @property-read \Phonyland\NumberGenerator\NumberGenerator     number
+ * @property-read \Phonyland\SequenceGenerator\SequenceGenerator sequence
+ * @property-read \Phonyland\CoinGenerator\CoinGenerator         coin
  */
 class Phony
 {
-    private Container $container;
+    public Container $container;
 
-    protected string $defaultLocale;
-
-    public function __construct(string $defaultLocale = Locale::English)
-    {
+    public function __construct(
+        public string $defaultLocale = Locale::English,
+        protected ?int $seed = null
+    ) {
         $this->container = new Container($this);
-        $this->defaultLocale = $defaultLocale;
+
+        // Set seed and feed the Mersenne Twister Random Number Generator
+        $this->seed = $seed ?? mt_rand(0, mt_getrandmax());
+        mt_srand($this->seed);
     }
 
     /**
