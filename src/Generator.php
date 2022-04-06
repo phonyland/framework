@@ -11,7 +11,7 @@ abstract class Generator
      *
      * @var array<string, string>
      */
-    public array $dataPackages = [];
+    protected array $dataPackages = [];
 
     public function __construct(
         public string $alias,
