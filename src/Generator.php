@@ -18,4 +18,27 @@ abstract class Generator
         protected Phony $phony,
     ) {
     }
+
+    // region Data Packages
+
+    /**
+     * Set one or many data packages for the generator.
+     *
+     * @param  array|null  $dataPackages
+     *
+     * @return void
+     */
+    public function setDataPackages(?array $dataPackages = null): void
+    {
+        if ($dataPackages === [] || $dataPackages === null) {
+            return;
+        }
+
+        foreach ($dataPackages as $locale => $dataPackage) {
+            // This will overwrite previous data package if it exists
+            $this->dataPackages[$locale] = $dataPackage;
+        }
+    }
+
+    // endregion
 }
