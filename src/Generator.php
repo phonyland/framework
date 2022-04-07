@@ -40,5 +40,12 @@ abstract class Generator
         }
     }
 
+    public function hasDataPackageForDefaultLocale(): bool
+    {
+        return isset($this->dataPackages[$this->phony->defaultLocale]);
+    }
+
+    // endregion
+
     // endregion
 }
