@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Phonyland\Framework;
 
+use Phonyland\Framework\Exceptions\ShouldNotHappen;
+
 abstract class Generator
 {
     /**
@@ -46,6 +48,40 @@ abstract class Generator
     }
 
     // endregion
+
+    // region Fetching
+
+    protected function fetch(string $path): mixed
+    {
+        [$dataPath, $inlinePath] = explode('::', $path) + [1 => null];
+        $dataPathParts = explode('.', $dataPath);
+        $alias = $dataPathParts[0];
+        unset($dataPathParts[0]);
+
+        $generatorInstance = $this->phony->container->get($alias);
+
+        if (!$generatorInstance->hasDataPackageForDefaultLocale()) {
+            return null;
+        }
+
+        $filePath =
+            getcwd().
+            '/vendor/'.
+            $generatorInstance->dataPackages[$this->phony->defaultLocale].
+            '/data/'.
+            implode('/', $dataPathParts).
+            '.php';
+
+        if (!file_exists($filePath)) {
+            throw ShouldNotHappen::fromMessage("Data file does not exist at path $filePath");
+        }
+
+        $data = require $filePath;
+
+        return is_array($data)
+            ? $data[array_rand($data)]
+            : $data;
+    }
 
     // endregion
 }
