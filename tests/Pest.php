@@ -9,7 +9,7 @@ function 🙃(): Phony
     return new Phony();
 }
 
-if (!function_exists('dd')) {
+if (! function_exists('dd')) {
     function dd()
     {
         $args = func_get_args();
@@ -18,7 +18,7 @@ if (!function_exists('dd')) {
     }
 }
 
-if (!function_exists('d')) {
+if (! function_exists('d')) {
     function d()
     {
         $args = func_get_args();

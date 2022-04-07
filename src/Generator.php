@@ -60,19 +60,19 @@ abstract class Generator
 
         $generatorInstance = $this->phony->container->get($alias);
 
-        if (!$generatorInstance->hasDataPackageForDefaultLocale()) {
+        if (! $generatorInstance->hasDataPackageForDefaultLocale()) {
             return null;
         }
 
         $filePath =
-            getcwd().
-            '/vendor/'.
-            $generatorInstance->dataPackages[$this->phony->defaultLocale].
-            '/data/'.
-            implode('/', $dataPathParts).
+            getcwd() .
+            '/vendor/' .
+            $generatorInstance->dataPackages[$this->phony->defaultLocale] .
+            '/data/' .
+            implode('/', $dataPathParts) .
             '.php';
 
-        if (!file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             throw ShouldNotHappen::fromMessage("Data file does not exist at path $filePath");
         }
 
