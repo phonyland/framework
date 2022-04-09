@@ -21,8 +21,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "phonyland/generator-manager": "dev-master",
         "phonyland-data/phony-generator-coin-en": "dev-master",
+        "phonyland/generator-manager": "dev-master",
         "phonyland/phony-generator-number": "dev-master",
         "phonyland/phony-generator-sequence": "dev-master"
     },
