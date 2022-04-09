@@ -21,44 +21,6 @@ abstract class Generator
     ) {
     }
 
-    // region Data Packages
-
-    /**
-     * Set one or many data packages for the generator.
-     *
-     * @param  array<string, string>|null  $dataPackages
-     *
-     * @return void
-     */
-    public function setDataPackages(?array $dataPackages = null): void
-    {
-        if ($dataPackages === [] || $dataPackages === null) {
-            return;
-        }
-
-        foreach ($dataPackages as $locale => $dataPackage) {
-            // This will overwrite previous data package if it exists
-            $this->dataPackages[$locale] = $dataPackage;
-        }
-    }
-
-    /**
-     * Returns the data packages for the generator.
-     *
-     * @return array<string, string>
-     */
-    public function getDataPackages(): array
-    {
-        return $this->dataPackages;
-    }
-
-    public function hasDataPackageForDefaultLocale(): bool
-    {
-        return isset($this->dataPackages[$this->phony->defaultLocale]);
-    }
-
-    // endregion
-
     // region Fetching
 
     /**
@@ -107,6 +69,45 @@ abstract class Generator
         return is_array($data)
             ? $data[array_rand($data)]
             : $data;
+
+    }
+
+    // endregion
+
+    // region Data Packages
+
+    /**
+     * Set one or many data packages for the generator.
+     *
+     * @param  array<string, string>|null  $dataPackages
+     *
+     * @return void
+     */
+    public function setDataPackages(?array $dataPackages = null): void
+    {
+        if ($dataPackages === [] || $dataPackages === null) {
+            return;
+        }
+
+        foreach ($dataPackages as $locale => $dataPackage) {
+            // This will overwrite previous data package if it exists
+            $this->dataPackages[$locale] = $dataPackage;
+        }
+    }
+
+    /**
+     * Returns the data packages for the generator.
+     *
+     * @return array<string, string>
+     */
+    public function getDataPackages(): array
+    {
+        return $this->dataPackages;
+    }
+
+    public function hasDataPackageForDefaultLocale(): bool
+    {
+        return isset($this->dataPackages[$this->phony->defaultLocale]);
     }
 
     // endregion
