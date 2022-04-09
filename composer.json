@@ -62,8 +62,8 @@
         "normalize": "@composer normalize --ansi --no-interaction --quiet",
         "test": [
             "@test:lint",
-            "@test:types",
             "@test:unit",
+            "@test:types",
             "@test:mutations"
         ],
         "test:lint": "php-cs-fixer fix -v --dry-run",
