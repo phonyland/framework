@@ -10,9 +10,9 @@ use RuntimeException;
 /**
  * Class Phony.
  *
- * @property-read \Phonyland\NumberGenerator\NumberGenerator     number
- * @property-read \Phonyland\SequenceGenerator\SequenceGenerator sequence
- * @property-read \Phonyland\CoinGenerator\CoinGenerator         coin
+ * @property-read \Phonyland\NumberGenerator\NumberGenerator     $number
+ * @property-read \Phonyland\SequenceGenerator\SequenceGenerator $sequence
+ * @property-read \Phonyland\CoinGenerator\CoinGenerator         $coin
  */
 class Phony
 {

@@ -26,7 +26,7 @@ abstract class Generator
     /**
      * Set one or many data packages for the generator.
      *
-     * @param  array|null  $dataPackages
+     * @param  array<string, string>|null  $dataPackages
      *
      * @return void
      */
@@ -42,6 +42,11 @@ abstract class Generator
         }
     }
 
+    /**
+     * Returns the data packages for the generator.
+     *
+     * @return array<string, string>
+     */
     public function getDataPackages(): array
     {
         return $this->dataPackages;
@@ -56,6 +61,13 @@ abstract class Generator
 
     // region Fetching
 
+    /**
+     * Builds the file path for the generator data file.
+     *
+     * @param  array<string>  $dataPathParts
+     *
+     * @return string
+     */
     protected function buildDataPath(array $dataPathParts): string
     {
         return getcwd() .
