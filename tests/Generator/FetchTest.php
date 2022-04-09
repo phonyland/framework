@@ -14,8 +14,7 @@ it('can fetch simple data files', function (): void {
         methodNames: ['simple']
     );
 
-    expect($🙃->sampleOne->simple())
-        ->toBe('simple data');
+    expect($🙃->sampleOne->simple())->toBe('simple data');
 });
 
 it('can fetch nested data files', function (): void {
@@ -28,6 +27,5 @@ it('can fetch nested data files', function (): void {
         methodNames: ['nestedSimple']
     );
 
-    expect($🙃->sampleOne->nestedSimple())
-        ->toBe('nested simple data');
+    expect($🙃->sampleOne->nestedSimple())->toBe('nested simple data');
 });
