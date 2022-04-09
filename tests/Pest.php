@@ -30,16 +30,19 @@ function fakeGeneratorWithData(
     string $packageName,
     array $dataFilePaths,
     array $methodNames,
+    bool $noMethodCall = false,
 ): array {
     /** @var \Mockery\MockInterface|Generator $generator */
     $generator = Mockery::mock($generatorClass, [$alias, $phonyInstance])
                         ->shouldAllowMockingProtectedMethods()
                         ->makePartial();
 
-    foreach ($methodNames as $methodName) {
-        $generator->shouldReceive($methodName)
-                  ->once()
-                  ->passthru();
+    if ($noMethodCall === false) {
+        foreach ($methodNames as $methodName) {
+            $generator->shouldReceive($methodName)
+                      ->once()
+                      ->passthru();
+        }
     }
 
     /** @var array<string> $dataFilePath */
