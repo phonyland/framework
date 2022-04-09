@@ -56,6 +56,16 @@ abstract class Generator
 
     // region Fetching
 
+    protected function buildDataPath(array $dataPathParts): string
+    {
+        return getcwd() .
+            '/vendor/' .
+            $this->dataPackages[$this->phony->defaultLocale] .
+            '/data/' .
+            implode('/', $dataPathParts) .
+            '.php';
+    }
+
     protected function fetch(string $path): mixed
     {
         [$dataPath, $inlinePath] = explode('::', $path) + [1 => null];
@@ -69,13 +79,7 @@ abstract class Generator
             return null;
         }
 
-        $filePath =
-            getcwd() .
-            '/vendor/' .
-            $generatorInstance->dataPackages[$this->phony->defaultLocale] .
-            '/data/' .
-            implode('/', $dataPathParts) .
-            '.php';
+        $filePath = $this->buildDataPath($dataPathParts);
 
         if (! file_exists($filePath)) {
             throw ShouldNotHappen::fromMessage("Data file does not exist at path $filePath");
