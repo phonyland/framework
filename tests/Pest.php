@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
+use Phonyland\Framework\Locale;
 use Phonyland\Framework\Phony;
 
-function 🙃(): Phony
-{
-    return new Phony();
+function 🙃(
+    string $defaultLocale = Locale::English,
+    ?int $seed = null
+): Phony {
+    return new Phony($defaultLocale, $seed);
+}
 }
 
 if (! function_exists('dd')) {
