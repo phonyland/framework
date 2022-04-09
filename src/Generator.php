@@ -22,6 +22,13 @@ abstract class Generator
      * @var array<string, string>
      */
     protected array $attributeAliases;
+
+    /**
+     * The method aliases to use methods as attributes.
+     *
+     * @var array<string, array<mixed>>
+     */
+    protected array $methodsAsAttributes;
      * Holds the list of data packages for the generator.
      *
      * @var array<string, string>

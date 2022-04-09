@@ -31,3 +31,17 @@ it('has magic attributes as aliases', function (): void {
 
     expect($🙃->sampleOne->nestedAttributeAlias)->toBe('nested simple data');
 });
+
+it('has magic methods as attributes', function (): void {
+    [$🙃] = fakeGeneratorWithData(
+        generatorClass: SampleOneGenerator::class,
+        phonyInstance: 🙃(),
+        alias: 'sampleOne',
+        packageName: 'sample-one',
+        dataFilePaths: [[1 => 'simple']],
+        methodNames: ['simple'],
+        noMethodCall: true,
+    );
+
+    expect($🙃->sampleOne->simple)->toBe('simple data');
+});
