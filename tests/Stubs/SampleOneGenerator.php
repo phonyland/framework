@@ -12,6 +12,10 @@ class SampleOneGenerator extends Generator
         'simpleAttribute'       => 'sampleOne.simple',
         'nestedSimpleAttribute' => 'sampleOne.nested.nested',
     ];
+
+    protected array $attributeAliases = [
+        'nestedAttributeAlias' => 'nestedSimpleAttribute',
+    ];
     public function simple(): string
     {
         return $this->fetch('sampleOne.simple');

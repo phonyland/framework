@@ -15,6 +15,13 @@ abstract class Generator
      * @var array<string, string>
      */
     protected array $attributes;
+
+    /**
+     * The attribute aliases.
+     *
+     * @var array<string, string>
+     */
+    protected array $attributeAliases;
      * Holds the list of data packages for the generator.
      *
      * @var array<string, string>
@@ -43,6 +50,10 @@ abstract class Generator
             return $this->fetch($this->attributes[$name]);
         }
 
+        // If it's a magic attribute alias
+        if (isset($this->attributeAliases[$name])) {
+            return $this->fetch($this->attributes[$this->attributeAliases[$name]]);
+        }
         throw new RuntimeException("The $name attribute is not defined!");
     }
     // region Fetching
