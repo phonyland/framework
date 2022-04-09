@@ -14,18 +14,16 @@ function 🙃(
 }
 
 if (! function_exists('dd')) {
-    function dd()
+    function dd(): void
     {
-        $args = func_get_args();
-        call_user_func_array('dump', $args);
+        call_user_func_array('dump', func_get_args());
         die();
     }
 }
 
 if (! function_exists('d')) {
-    function d()
+    function d(): void
     {
-        $args = func_get_args();
-        call_user_func_array('dump', $args);
+        call_user_func_array('dump', func_get_args());
     }
 }
