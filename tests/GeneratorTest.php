@@ -18,3 +18,16 @@ it('can fetch simple data files', function (): void {
         ->toBe('simple data');
 });
 
+it('can fetch nested data files', function (): void {
+    [$🙃] = fakeGeneratorWithData(
+        generatorClass: SampleOneGenerator::class,
+        phonyInstance: 🙃(),
+        alias: 'sampleOne',
+        packageName: 'sample-one',
+        dataFilePaths: [[1 => 'nested', 2 => 'nested']],
+        methodNames: ['nestedSimple']
+    );
+
+    expect($🙃->sampleOne->nestedSimple())
+        ->toBe('nested simple data');
+});
