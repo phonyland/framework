@@ -42,6 +42,11 @@ abstract class Generator
         }
     }
 
+    public function getDataPackages(): array
+    {
+        return $this->dataPackages;
+    }
+
     public function hasDataPackageForDefaultLocale(): bool
     {
         return isset($this->dataPackages[$this->phony->defaultLocale]);
