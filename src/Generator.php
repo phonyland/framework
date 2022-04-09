@@ -29,6 +29,15 @@ abstract class Generator
      * @var array<string, array<mixed>>
      */
     protected array $methodsAsAttributes;
+
+    /**
+     * The method aliases.
+     *
+     * @var array<string, string>
+     */
+    protected array $methodAliases;
+
+    /**
      * Holds the list of data packages for the generator.
      *
      * @var array<string, string>
@@ -61,8 +70,33 @@ abstract class Generator
         if (isset($this->attributeAliases[$name])) {
             return $this->fetch($this->attributes[$this->attributeAliases[$name]]);
         }
+
+        // If it's a magic attribute for a method
+        if (isset($this->methodsAsAttributes[$name]) && method_exists($this, $name)) {
+            return call_user_func_array([$this, $name], $this->methodsAsAttributes[$name]);
+        }
+
         throw new RuntimeException("The $name attribute is not defined!");
     }
+
+    /**
+     * Calls a magic method.
+     *
+     * @param  string  $name
+     * @param  array<mixed>   $arguments
+     *
+     * @return mixed
+     */
+    public function __call(string $name, array $arguments): mixed
+    {
+        if (isset($this->methodAliases[$name])) {
+            return call_user_func_array([$this, $this->methodAliases[$name]], $arguments);
+        }
+
+        throw new RuntimeException("The $name method is not defined!");
+    }
+
+    // endregion
     // region Fetching
 
     /**

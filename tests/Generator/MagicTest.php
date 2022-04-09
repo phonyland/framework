@@ -45,3 +45,17 @@ it('has magic methods as attributes', function (): void {
 
     expect($🙃->sampleOne->simple)->toBe('simple data');
 });
+
+it('has magic method aliases', function (): void {
+    [$🙃] = fakeGeneratorWithData(
+        generatorClass: SampleOneGenerator::class,
+        phonyInstance: 🙃(),
+        alias: 'sampleOne',
+        packageName: 'sample-one',
+        dataFilePaths: [[1 => 'simple']],
+        methodNames: ['simple'],
+        noMethodCall: true,
+    );
+
+    expect($🙃->sampleOne->basicMethod())->toBe('simple data');
+});

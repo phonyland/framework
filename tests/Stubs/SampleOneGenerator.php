@@ -21,6 +21,11 @@ class SampleOneGenerator extends Generator
         'simple'       => [],
         'nestedSimple' => [],
     ];
+
+    protected array $methodAliases = [
+        'basicMethod' => 'simple'
+    ];
+
     public function simple(): string
     {
         return $this->fetch('sampleOne.simple');
