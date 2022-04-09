@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace Phonyland\Framework;
 
 use Phonyland\Framework\Exceptions\ShouldNotHappen;
+use RuntimeException;
 
 abstract class Generator
 {
     /**
+     * The name of attributes and their fetching paths.
+     *
+     * @var array<string, string>
+     */
+    protected array $attributes;
      * Holds the list of data packages for the generator.
      *
      * @var array<string, string>
@@ -21,6 +27,24 @@ abstract class Generator
     ) {
     }
 
+    // region Magic Setup
+
+    /**
+     * Calls a magic attribute.
+     *
+     * @param  string  $name
+     *
+     * @return mixed
+     */
+    public function __get(string $name): mixed
+    {
+        // If it's a magic attribute
+        if (isset($this->attributes[$name])) {
+            return $this->fetch($this->attributes[$name]);
+        }
+
+        throw new RuntimeException("The $name attribute is not defined!");
+    }
     // region Fetching
 
     /**

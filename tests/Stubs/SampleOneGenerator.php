@@ -8,6 +8,10 @@ use Phonyland\Framework\Generator;
 
 class SampleOneGenerator extends Generator
 {
+    protected array $attributes = [
+        'simpleAttribute'       => 'sampleOne.simple',
+        'nestedSimpleAttribute' => 'sampleOne.nested.nested',
+    ];
     public function simple(): string
     {
         return $this->fetch('sampleOne.simple');
