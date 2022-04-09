@@ -73,10 +73,8 @@ abstract class Generator
         $alias = $dataPathParts[0];
         unset($dataPathParts[0]);
 
-        $generatorInstance = $this->phony->container->get($alias);
-
-        if (! $generatorInstance->hasDataPackageForDefaultLocale()) {
-            return null;
+        if (! $this->hasDataPackageForDefaultLocale()) {
+            throw ShouldNotHappen::fromMessage("The generator $this->alias does not have any data file for the {$this->phony->defaultLocale} locale.");
         }
 
         $filePath = $this->buildDataPath($dataPathParts);
