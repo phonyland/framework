@@ -78,6 +78,13 @@ abstract class Generator
             '.php';
     }
 
+    /**
+     * Fetches data by given path.
+     *
+     * @param  string  $path
+     *
+     * @return mixed
+     */
     protected function fetch(string $path): mixed
     {
         [$dataPath, $inlinePath] = explode('::', $path) + [1 => null];
