@@ -64,3 +64,7 @@ it('can not access undefined magic attribute', function() {
     // @phpstan-ignore-next-line
     (new SampleOneGenerator('sampleOne', 🙃()))->notExist;
 })->throws(RuntimeException::class);
+
+it('can not set any magic attribute', function () {
+    🙃()->sampleOne->simple = 'something';
+})->throws(RuntimeException::class);

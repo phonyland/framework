@@ -80,6 +80,17 @@ abstract class Generator
     }
 
     /**
+     * Setting a magic attribute is not allowed.
+     *
+     * @param  string  $name
+     * @param  mixed   $value
+     *
+     * @return void
+     */
+    public function __set(string $name, mixed $value): void
+    {
+        throw new RuntimeException("Setting $name attribute is not allowed!");
+    }
      * Calls a magic method.
      *
      * @param  string  $name
