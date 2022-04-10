@@ -70,3 +70,10 @@ it('can not set any magic attribute', function () {
     // @phpstan-ignore-next-line
     $generator->simpleAttribute = 'not-allowed';
 })->throws(RuntimeException::class);
+
+it('can check existence of a magic attribute', function () {
+    $generator = new SampleOneGenerator('sampleOne', 🙃());
+
+    expect(isset($generator->simpleAttribute))->toBeTrue();
+    expect(isset($generator->nonExistingAttribute))->toBeFalse();
+});

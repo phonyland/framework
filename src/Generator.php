@@ -91,6 +91,35 @@ abstract class Generator
     {
         throw new RuntimeException("Setting $name attribute is not allowed!");
     }
+
+    /**
+     * Checks if a magic attribute exists.
+     *
+     * @param  string  $name
+     *
+     * @return bool
+     */
+    public function __isset(string $name)
+    {
+        // If it's a magic attribute
+        if (isset($this->attributes[$name])) {
+            return true;
+        }
+
+        // If it's a magic attribute alias
+        if (isset($this->attributeAliases[$name])) {
+            return true;
+        }
+
+        // If it's a magic attribute for a method
+        if (isset($this->methodsAsAttributes[$name]) && method_exists($this, $name)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Calls a magic method.
      *
      * @param  string  $name
@@ -108,6 +137,7 @@ abstract class Generator
     }
 
     // endregion
+
     // region Fetching
 
     /**
