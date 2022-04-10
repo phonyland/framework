@@ -23,7 +23,7 @@ class SampleOneGenerator extends Generator
     ];
 
     protected array $methodAliases = [
-        'basicMethod' => 'simple'
+        'basicMethod' => 'simple',
     ];
 
     public function simple(): string
