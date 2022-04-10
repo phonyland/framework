@@ -62,9 +62,11 @@ it('has magic method aliases', function (): void {
 
 it('can not access undefined magic attribute', function() {
     // @phpstan-ignore-next-line
-    (new SampleOneGenerator('sampleOne', 🙃()))->notExist;
+    (new SampleOneGenerator('sampleOne', 🙃()))->nonExistingAttribute;
 })->throws(RuntimeException::class);
 
 it('can not set any magic attribute', function () {
-    🙃()->sampleOne->simple = 'something';
+    $generator = new SampleOneGenerator('sampleOne', 🙃());
+    // @phpstan-ignore-next-line
+    $generator->simpleAttribute = 'not-allowed';
 })->throws(RuntimeException::class);
