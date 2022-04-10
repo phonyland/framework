@@ -60,17 +60,7 @@ it('has magic method aliases', function (): void {
     expect($🙃->sampleOne->basicMethod())->toBe('simple data');
 });
 
-it('can not access undefined magic attribute', function () {
-    [$🙃] = fakeGeneratorWithData(
-        generatorClass: SampleOneGenerator::class,
-        phonyInstance: 🙃(),
-        alias: 'sampleOne',
-        packageName: 'sample-one',
-        dataFilePaths: [[1 => 'simple']],
-        methodNames: ['simple'],
-        mockMethodCalls: false,
-        mockBuildDataPath: false,
-    );
-
-    expect($🙃->sampleOne->notExist);
+it('can not access undefined magic attribute', function() {
+    // @phpstan-ignore-next-line
+    (new SampleOneGenerator('sampleOne', 🙃()))->notExist;
 })->throws(RuntimeException::class);
