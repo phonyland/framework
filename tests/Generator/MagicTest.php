@@ -60,7 +60,7 @@ it('has magic method aliases', function (): void {
     expect($🙃->sampleOne->basicMethod())->toBe('simple data');
 });
 
-it('can not access undefined magic attribute', function() {
+it('can not access undefined magic attributes', function() {
     // @phpstan-ignore-next-line
     (new SampleOneGenerator('sampleOne', 🙃()))->nonExistingAttribute;
 })->throws(RuntimeException::class);
@@ -77,3 +77,8 @@ it('can check existence of a magic attribute', function () {
     expect(isset($generator->simpleAttribute))->toBeTrue();
     expect(isset($generator->nonExistingAttribute))->toBeFalse();
 });
+
+it('can not access undefined magic methods', function() {
+    // @phpstan-ignore-next-line
+    (new SampleOneGenerator('sampleOne', 🙃()))->nonExistingMethod();
+})->throws(RuntimeException::class);
