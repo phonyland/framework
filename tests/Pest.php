@@ -31,6 +31,7 @@ function fakeGeneratorWithData(
     array $dataFilePaths,
     array $methodNames,
     bool $mockMethodCalls = true,
+    bool $mockBuildDataPath = true,
 ): array {
     /** @var \Mockery\MockInterface|Generator $generator */
     $generator = Mockery::mock($generatorClass, [$alias, $phonyInstance])
@@ -45,13 +46,15 @@ function fakeGeneratorWithData(
         }
     }
 
-    /** @var array<string> $dataFilePath */
-    foreach ($dataFilePaths as $dataFilePath) {
-        $generator
-            ->shouldReceive('buildDataPath')
-            ->once()
-            ->with($dataFilePath)
-            ->andReturn(getcwd() . '/tests/Stubs/data/' . implode('/', $dataFilePath) . '.php');
+    if ($mockBuildDataPath === true) {
+        /** @var array<string> $dataFilePath */
+        foreach ($dataFilePaths as $dataFilePath) {
+            $generator
+                ->shouldReceive('buildDataPath')
+                ->once()
+                ->with($dataFilePath)
+                ->andReturn(getcwd() . '/tests/Stubs/data/' . implode('/', $dataFilePath) . '.php');
+        }
     }
 
     $generator->setDataPackages(['en' => "phonyland-data-fake/$packageName"]);
