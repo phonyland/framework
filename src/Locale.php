@@ -6,7 +6,7 @@ namespace Phonyland\Framework;
 
 class Locale
 {
-    public const LanguageIndependent = '*';
+    public const LocaleIndependent = '*';
     public const English = 'en';
     public const Cebuano = 'ceb';
     public const German = 'de';
