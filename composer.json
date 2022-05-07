@@ -24,7 +24,8 @@
         "phonyland-data/phony-generator-coin-en": "dev-master",
         "phonyland/generator-manager": "dev-master",
         "phonyland/phony-generator-number": "dev-master",
-        "phonyland/phony-generator-sequence": "dev-master"
+        "phonyland/phony-generator-sequence": "dev-master",
+        "softcreatr/jsonpath": "^0.8.0"
     },
     "require-dev": {
         "phonyland/dev-tools": "dev-master"
