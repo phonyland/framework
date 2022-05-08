@@ -158,18 +158,18 @@ abstract class Generator
 
             // If we are the generator package alone
             if (str_contains(getcwd(), $this->name)) {
-                return getcwd().
-                    '/data/'.
-                    implode('/', $dataPathParts).
+                return getcwd() .
+                    '/data/' .
+                    implode('/', $dataPathParts) .
                     '.php';
             }
 
             // If we are using the generator package through another package
-            return getcwd().
-                '/vendor/'.
-                $this->name.
-                '/data/'.
-                implode('/', $dataPathParts).
+            return getcwd() .
+                '/vendor/' .
+                $this->name .
+                '/data/' .
+                implode('/', $dataPathParts) .
                 '.php';
         }
 
