@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phonyland\Framework;
 
+use Flow\JSONPath\JSONPath;
 use Phonyland\Framework\Exceptions\ShouldNotHappen;
 use RuntimeException;
 
@@ -164,6 +165,7 @@ abstract class Generator
      * @param  string  $path
      *
      * @return mixed
+     * @throws \Flow\JSONPath\JSONPathException
      */
     protected function fetch(string $path): mixed
     {
@@ -183,6 +185,10 @@ abstract class Generator
         }
 
         $data = require $filePath;
+
+        if ($inlinePath !== null) {
+            $data = (new JSONPath($data))->find($inlinePath)->getData();
+        }
 
         return is_array($data)
             ? $data[array_rand($data)]
