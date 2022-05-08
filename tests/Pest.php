@@ -36,7 +36,7 @@ function fakeGeneratorWithData(
     bool $mockBuildDataPath = true,
 ): array {
     /** @var \Mockery\MockInterface|Generator $generator */
-    $generator = Mockery::mock($generatorClass, [$alias, $phonyInstance])
+    $generator = Mockery::mock($generatorClass, [$alias, $packageName, $phonyInstance])
                         ->shouldAllowMockingProtectedMethods()
                         ->makePartial();
 

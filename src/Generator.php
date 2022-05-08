@@ -46,6 +46,7 @@ abstract class Generator
 
     public function __construct(
         public string $alias,
+        public string $name,
         protected Phony $phony,
     ) {
     }
