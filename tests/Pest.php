@@ -14,12 +14,14 @@ function 🙃(
 }
 
 /**
- * @param class-string<Generator>     $generatorClass
+ * @param  string                      $generatorClass
  * @param  \Phonyland\Framework\Phony  $phonyInstance
  * @param  string                      $alias
  * @param  string                      $packageName
  * @param  array<string>               $dataFilePaths
  * @param  array<string>               $methodNames
+ * @param  bool                        $mockMethodCalls
+ * @param  bool                        $mockBuildDataPath
  *
  * @return array{0: Phony, 1: Generator}
  */

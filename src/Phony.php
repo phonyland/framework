@@ -29,9 +29,8 @@ class Phony
         mt_srand($this->seed);
     }
 
-    /**
-     * @throws \Exception
-     */
+    // region Magic Setup
+
     public function __get(string $name): Generator
     {
         return $this->container->get($name);
@@ -39,11 +38,13 @@ class Phony
 
     public function __set(string $name, string $value): void
     {
-        throw new RuntimeException('Not allowed to set any generators');
+        throw new RuntimeException('Setting generators are not allowed.');
     }
 
     public function __isset(string $name): bool
     {
         return $this->container->has($name);
     }
+
+    // endregion
 }

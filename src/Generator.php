@@ -207,7 +207,7 @@ abstract class Generator
         }
 
         foreach ($dataPackages as $locale => $dataPackage) {
-            // This will overwrite previous data package if it exists
+            // This will overwrite previous data package if it already exists
             $this->dataPackages[$locale] = $dataPackage;
         }
     }
