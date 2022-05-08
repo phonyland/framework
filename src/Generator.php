@@ -151,6 +151,28 @@ abstract class Generator
      */
     protected function buildDataPath(array $dataPathParts): string
     {
+        // If we are fetching for language independent data
+        if (str_contains($dataPathParts[0], '*')) {
+            // Delete '*' sign
+            $dataPathParts[0] = substr($dataPathParts[0], 0, -1);
+
+            // If we are the generator package alone
+            if (str_contains(getcwd(), $this->name)) {
+                return getcwd().
+                    '/data/'.
+                    implode('/', $dataPathParts).
+                    '.php';
+            }
+
+            // If we are using the generator package through another package
+            return getcwd().
+                '/vendor/'.
+                $this->name.
+                '/data/'.
+                implode('/', $dataPathParts).
+                '.php';
+        }
+
         return getcwd() .
             '/vendor/' .
             $this->dataPackages[$this->phony->defaultLocale] .
@@ -165,6 +187,7 @@ abstract class Generator
      * @param  string  $path
      *
      * @return mixed
+     *
      * @throws \Flow\JSONPath\JSONPathException
      */
     protected function fetch(string $path): mixed
@@ -178,7 +201,7 @@ abstract class Generator
             throw ShouldNotHappen::fromMessage("The generator $this->alias does not have any data file for the {$this->phony->defaultLocale} locale.");
         }
 
-        $filePath = $this->buildDataPath($dataPathParts);
+        $filePath = $this->buildDataPath(array_values($dataPathParts));
 
         if (! file_exists($filePath)) {
             throw ShouldNotHappen::fromMessage("Data file does not exist at path $filePath");
@@ -194,6 +217,34 @@ abstract class Generator
             ? $data[array_rand($data)]
             : $data;
 
+        // TODO: Fallback locales as array
+        // TODO: any language option?
+        // TODO: Test multiple languages by changing default locale
+
+        // Multiple fetch cases
+        // ✅ coin.flip                                  - Simple Data File
+        // ✅ programming_language.php.extension         - Simple data in nested folders
+        // ✅ scale_of_the_universe.'Planck Length'.size - Array key paths
+        // ✅ scale_of_the_universe.'Planck Length'      - Returns array?
+        // ✅ scale.universe::Plank_Length.size.count
+
+        // Dile gore farklilikler nasil ele alinacak
+        // address.city
+        // address.ilçe? sadece turkce icinde varsa?
+        //  - CoinGenerator'dan extend olan CoinGeneratorTr sinifi icinde tanimli olabilir
+        //      - $phony->coin->flip_tr gibi sadece tr paketinde olan bisi cagirildiginda
+
+        // Phony Templating Engine
+        // - Sequence Characters -> Escaping? -> 🙃#@🙃
+        // - Data fetch paths
+        //  - Inter generator data fetch paths?
+        //  - Multi language data fetch paths allowed?
+        //  - Language independent data?
+        // - phony language
+        //  - Multi language usage?
+
+        // Caching
+        //  - Cache size
     }
 
     // endregion
