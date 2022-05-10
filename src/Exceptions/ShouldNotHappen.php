@@ -19,7 +19,7 @@ final class ShouldNotHappen extends RuntimeException
     {
         parent::__construct(sprintf(<<<'MESSAGE'
                 
-                This should not happen - please create a new issue here: https://github.com/phonyland/framework.
+                This should not happen. Please create a new issue here: https://github.com/phonyland/framework/issues/new
                 
                 - Issue: %s
                 - PHP version: %s
