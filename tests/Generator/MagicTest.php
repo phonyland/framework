@@ -10,7 +10,7 @@ it('has magic attributes', function (): void {
         phonyInstance: 🙃(),
         alias: 'sampleOne',
         packageName: 'sample-one',
-        dataFilePaths: [[1 => 'simple']],
+        dataFilePaths: [['simple']],
         methodNames: ['simple'],
         mockMethodCalls: false,
     );
@@ -24,7 +24,7 @@ it('has magic attributes as aliases', function (): void {
         phonyInstance: 🙃(),
         alias: 'sampleOne',
         packageName: 'sample-one',
-        dataFilePaths: [[1 => 'nested', 2 => 'nested']],
+        dataFilePaths: [['nested', 'nested']],
         methodNames: ['nestedSimple'],
         mockMethodCalls: false,
     );
@@ -38,7 +38,7 @@ it('has magic methods as attributes', function (): void {
         phonyInstance: 🙃(),
         alias: 'sampleOne',
         packageName: 'sample-one',
-        dataFilePaths: [[1 => 'simple']],
+        dataFilePaths: [['simple']],
         methodNames: ['simple'],
         mockMethodCalls: false,
     );
@@ -52,7 +52,7 @@ it('has magic method aliases', function (): void {
         phonyInstance: 🙃(),
         alias: 'sampleOne',
         packageName: 'sample-one',
-        dataFilePaths: [[1 => 'simple']],
+        dataFilePaths: [['simple']],
         methodNames: ['simple'],
         mockMethodCalls: false,
     );
