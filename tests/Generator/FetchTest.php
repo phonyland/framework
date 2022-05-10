@@ -10,7 +10,7 @@ it('can fetch simple data files', function (): void {
         phonyInstance: 🙃(),
         alias: 'sampleOne',
         packageName: 'sample-one',
-        dataFilePaths: [[1 => 'simple']],
+        dataFilePaths: [['simple']],
         methodNames: ['simple']
     );
 
@@ -23,7 +23,7 @@ it('can fetch nested data files', function (): void {
         phonyInstance: 🙃(),
         alias: 'sampleOne',
         packageName: 'sample-one',
-        dataFilePaths: [[1 => 'nested', 2 => 'nested']],
+        dataFilePaths: [['nested', 'nested']],
         methodNames: ['nestedSimple']
     );
 
