@@ -1,27 +1,12 @@
 name: Pint
 
 on:
-  push:
+  workflow_call: &default_conditions
     paths:
       - '**.php'
+  pull_request: *default_conditions
+  push: *default_conditions
 
 jobs:
-  php-code-styling:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Fix PHP code style issues
-        uses: aglipanci/laravel-pint-action@2.3.0
-        with:
-          preset: laravel
-          configPath: "vendor/phonyland/dev-tools/src/pint.json"
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "chore: Fix styling"
+  check_code_styling:
+    uses: phonyland/dev-tools/.github/workflows/pint.yml@master

@@ -1,27 +1,13 @@
 name: PHPstan
 
 on:
-  push:
+  workflow_call: &default_conditions
     paths:
       - '**.php'
       - 'phpstan.neon.dist'
+  pull_request: *default_conditions
+  push: *default_conditions
 
 jobs:
   phpstan:
-    name: phpstan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          coverage: none
-
-      - name: Install composer dependencies
-        uses: ramsey/composer-install@v2
-
-      - name: Run PHPStan
-        run: ./vendor/bin/phpstan analyse --error-format=github
-        continue-on-error: true
+    uses: phonyland/dev-tools/.github/workflows/phpstan.yml@master

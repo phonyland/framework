@@ -1,11 +1,13 @@
 name: Infection
 
 on:
-  push:
+  workflow_call: &default_conditions
     paths:
       - '**.php'
       - 'infection.json5'
+  pull_request: *default_conditions
+  push: *default_conditions
 
 jobs:
-  phony_workflows:
+  run_mutation_tests:
     uses: phonyland/dev-tools/.github/workflows/infection.yml@master

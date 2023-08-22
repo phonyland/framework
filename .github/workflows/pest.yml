@@ -5,5 +5,5 @@ on:
   pull_request:
 
 jobs:
-  pest:
+  run_pest_tests:
     uses: phonyland/dev-tools/.github/workflows/pest.yml@master
