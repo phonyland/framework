@@ -1,5 +1,9 @@
 name: Pest
 
+on:
+  push:
+  pull_request:
+
 jobs:
   pest:
     uses: phonyland/dev-tools/.github/workflows/pest.yml@master
