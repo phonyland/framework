@@ -44,12 +44,11 @@
     },
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "infection/extension-installer": true,
-            "pestphp/pest-plugin": true,
             "phonyland/generator-manager": true,
-            "phpstan/extension-installer": true,
-            "symfony/thanks": true
+            "pestphp/pest-plugin": true,
+            "infection/extension-installer": true,
+            "ergebnis/composer-normalize": true,
+            "phpstan/extension-installer": true
         },
         "sort-packages": true
     },
