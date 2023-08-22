@@ -60,6 +60,8 @@ abstract class Generator
      * @param  string  $name
      *
      * @return mixed
+     *
+     * @throws \Flow\JSONPath\JSONPathException
      */
     public function __get(string $name): mixed
     {
