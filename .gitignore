@@ -13,3 +13,4 @@ coverage.xml
 .php-cs-fixer.cache
 infection.log
 summary.log
+build

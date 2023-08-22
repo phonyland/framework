@@ -9,6 +9,7 @@ use RuntimeException;
 
 /**
  * Class Phony.
+ * // TODO: Burada mixin kullanilabilir, laravel ide helper gibi.
  *
  * @property-read \Phonyland\NumberGenerator\NumberGenerator     $number
  * @property-read \Phonyland\SequenceGenerator\SequenceGenerator $sequence

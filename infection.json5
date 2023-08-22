@@ -5,12 +5,11 @@
             "src"
         ]
     },
-    "logs": {
-        "text": "infection.log",
-        "summary": "summary.log"
-    },
     "phpUnit": {
         "configDir": "."
+    },
+    "logs": {
+        "text": "build/infection.log"
     },
     "mutators": {
         "@default": true
