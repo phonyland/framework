@@ -1,11 +1,12 @@
 name: Pint
 
 on:
-  workflow_call: &default_conditions
+  pull_request:
     paths:
       - '**.php'
-  pull_request: *default_conditions
-  push: *default_conditions
+  push:
+    paths:
+      - '**.php'
 
 jobs:
   check_code_styling:

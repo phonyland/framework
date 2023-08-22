@@ -1,12 +1,14 @@
 name: PHPstan
 
 on:
-  workflow_call: &default_conditions
+  pull_request:
     paths:
       - '**.php'
       - 'phpstan.neon.dist'
-  pull_request: *default_conditions
-  push: *default_conditions
+  push:
+    paths:
+      - '**.php'
+      - 'phpstan.neon.dist'
 
 jobs:
   phpstan:
