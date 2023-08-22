@@ -10,7 +10,7 @@ it('can pipe through values', function (): void {
     $callCount = random_int(2, 10);
 
     for ($i = 1; $i <= $callCount; $i++) {
-        $pipe(fn($value) => $value * 2);
+        $pipe(fn ($value) => $value * 2);
     }
 
     expect($pipe->value)->toBe(2 ** ($callCount + 1));

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phonyland\Framework;
 
+use RuntimeException;
 use Flow\JSONPath\JSONPath;
 use Phonyland\Framework\Exceptions\ShouldNotHappen;
-use RuntimeException;
 
 abstract class Generator
 {
@@ -57,9 +57,7 @@ abstract class Generator
     /**
      * Calls a magic attribute.
      *
-     * @param  string  $name
      *
-     * @return mixed
      *
      * @throws \Flow\JSONPath\JSONPathException
      */
@@ -80,26 +78,20 @@ abstract class Generator
             return call_user_func_array([$this, $name], $this->methodsAsAttributes[$name]);
         }
 
-        throw new RuntimeException("The $name attribute is not defined!");
+        throw new RuntimeException("The {$name} attribute is not defined!");
     }
 
     /**
      * Setting a magic attribute is not allowed.
-     *
-     * @param  string  $name
-     * @param  mixed   $value
-     *
-     * @return void
      */
     public function __set(string $name, mixed $value): void
     {
-        throw new RuntimeException("Setting $name attribute is not allowed!");
+        throw new RuntimeException("Setting {$name} attribute is not allowed!");
     }
 
     /**
      * Checks if a magic attribute exists.
      *
-     * @param  string  $name
      *
      * @return bool
      */
@@ -126,10 +118,7 @@ abstract class Generator
     /**
      * Calls a magic method.
      *
-     * @param  string  $name
-     * @param  array<mixed>   $arguments
-     *
-     * @return mixed
+     * @param  array<mixed>  $arguments
      */
     public function __call(string $name, array $arguments): mixed
     {
@@ -137,7 +126,7 @@ abstract class Generator
             return call_user_func_array([$this, $this->methodAliases[$name]], $arguments);
         }
 
-        throw new RuntimeException("The $name method is not defined!");
+        throw new RuntimeException("The {$name} method is not defined!");
     }
 
     // endregion
@@ -148,8 +137,6 @@ abstract class Generator
      * Builds the file path for the generator data file.
      *
      * @param  array<string>  $dataPathParts
-     *
-     * @return string
      */
     protected function buildDataPath(array $dataPathParts): string
     {
@@ -160,53 +147,51 @@ abstract class Generator
 
             // If we are the generator package alone
             if (str_contains(getcwd(), $this->name)) {
-                return getcwd() .
-                    '/data/' .
-                    implode('/', $dataPathParts) .
+                return getcwd().
+                    '/data/'.
+                    implode('/', $dataPathParts).
                     '.php';
             }
 
             // If we are using the generator package through another package
-            return getcwd() .
-                '/vendor/' .
-                $this->name .
-                '/data/' .
-                implode('/', $dataPathParts) .
+            return getcwd().
+                '/vendor/'.
+                $this->name.
+                '/data/'.
+                implode('/', $dataPathParts).
                 '.php';
         }
 
-        return getcwd() .
-            '/vendor/' .
-            $this->dataPackages[$this->phony->defaultLocale] .
-            '/data/' .
-            implode('/', $dataPathParts) .
+        return getcwd().
+            '/vendor/'.
+            $this->dataPackages[$this->phony->defaultLocale].
+            '/data/'.
+            implode('/', $dataPathParts).
             '.php';
     }
 
     /**
      * Fetches data by given path.
      *
-     * @param  string  $path
      *
-     * @return mixed
      *
      * @throws \Flow\JSONPath\JSONPathException
      */
     protected function fetch(string $path): mixed
     {
         [$dataPath, $inlinePath] = explode('::', $path) + [1 => null];
-        $dataPathParts = explode('.', $dataPath);
-        $alias = $dataPathParts[0];
+        $dataPathParts           = explode('.', $dataPath);
+        $alias                   = $dataPathParts[0];
         unset($dataPathParts[0]);
 
-        if (! $this->hasDataPackageForDefaultLocale()) {
-            throw ShouldNotHappen::fromMessage("The generator $this->alias does not have any data file for the {$this->phony->defaultLocale} locale.");
+        if (!$this->hasDataPackageForDefaultLocale()) {
+            throw ShouldNotHappen::fromMessage("The generator {$this->alias} does not have any data file for the {$this->phony->defaultLocale} locale.");
         }
 
         $filePath = $this->buildDataPath(array_values($dataPathParts));
 
-        if (! file_exists($filePath)) {
-            throw ShouldNotHappen::fromMessage("Data file does not exist at path $filePath");
+        if (!file_exists($filePath)) {
+            throw ShouldNotHappen::fromMessage("Data file does not exist at path {$filePath}");
         }
 
         $data = require $filePath;
@@ -257,10 +242,8 @@ abstract class Generator
      * Set one or many data packages for the generator.
      *
      * @param  array<string, string>|null  $dataPackages
-     *
-     * @return void
      */
-    public function setDataPackages(?array $dataPackages = null): void
+    public function setDataPackages(array $dataPackages = null): void
     {
         if ($dataPackages === [] || $dataPackages === null) {
             return;

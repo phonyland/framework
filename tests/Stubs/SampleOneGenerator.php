@@ -12,16 +12,13 @@ class SampleOneGenerator extends Generator
         'simpleAttribute'       => 'sampleOne.simple',
         'nestedSimpleAttribute' => 'sampleOne.nested.nested',
     ];
-
     protected array $attributeAliases = [
         'nestedAttributeAlias' => 'nestedSimpleAttribute',
     ];
-
     protected array $methodsAsAttributes = [
         'simple'       => [],
         'nestedSimple' => [],
     ];
-
     protected array $methodAliases = [
         'basicMethod' => 'simple',
     ];

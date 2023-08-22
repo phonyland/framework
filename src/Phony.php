@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Phonyland\Framework;
 
-use Phonyland\GeneratorManager\Container;
 use RuntimeException;
+use Phonyland\GeneratorManager\Container;
 
 /**
  * Class Phony.
