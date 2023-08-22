@@ -1,7 +1,0 @@
-name: Tests
-
-on: [ 'push', 'pull_request' ]
-
-jobs:
-  phony_workflows:
-    uses: phonyland/dev-tools/.github/workflows/tests.yml@master
