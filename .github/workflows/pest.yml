@@ -2,10 +2,8 @@ name: Pest
 
 on:
   push:
-    branches: [main, master]
   pull_request:
-    branches: [main, master]
 
 jobs:
-  phony_workflows:
+  pest:
     uses: phonyland/dev-tools/.github/workflows/pest.yml@master
